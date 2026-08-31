@@ -59,7 +59,7 @@
       "parameters": {
         "conditions": {
           "options": {
-            "caseSensitive": true,
+            "caseSensitive": false,
             "leftValue": "",
             "typeValidation": "strict",
             "version": 3
@@ -102,7 +102,7 @@
         -96
       ],
       "id": "6384da4d-bcfa-4a73-bf5c-56309b51ffc6",
-      "name": "Respond to Webhook"
+      "name": "Respond to Webhook - Urgente"
     },
     {
       "parameters": {
@@ -117,7 +117,7 @@
         96
       ],
       "id": "d5ce4817-9e72-49e2-8ad2-643e02cf95b4",
-      "name": "Respond to Webhook1"
+      "name": "Respond to Webhook - Normal"
     }
   ],
   "pinData": {},
@@ -148,14 +148,14 @@
       "main": [
         [
           {
-            "node": "Respond to Webhook",
+            "node": "Respond to Webhook - Urgente",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Respond to Webhook1",
+            "node": "Respond to Webhook - Normal",
             "type": "main",
             "index": 0
           }
