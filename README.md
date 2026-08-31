@@ -28,13 +28,16 @@ docker ps
 Acceder a n8n desde el navegador:http://localhost:5678
 
 ## Estructura del proyecto
+
+```
 proyecto-n8n-docker/
-|
-|-- docker-compose.yml
-|-- .gitignore
-|-- README.md
-|-- evidencias/
--- workflows/ -- registro-incidencias.json
+├── docker-compose.yml
+├── .gitignore
+├── README.md
+├── evidencias/
+└── workflows/
+    └── registro-incidencias.json
+```
 
 ## Funcionamiento del workflow
 
