@@ -86,6 +86,29 @@ Para probar el webhook manualmente se envio una peticion POST a la URL generada 
 en el cuerpo de la solicitud en formato JSON. La respuesta del workflow confirmo la clasificacion
 correcta (URGENTE o NORMAL) segun el valor enviado.
 
+## Como probar el webhook desde PowerShell
+
+Ademas de la prueba manual descrita anteriormente, el webhook tambien se puede probar directamente
+desde PowerShell usando el comando Invoke-RestMethod.
+
+### Prueba con prioridad alta
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:5678/webhook/registro-incidencias" -Method POST -Body (@{prioridad="alta"} | ConvertTo-Json) -ContentType "application/json"
+```
+
+Esta prueba envia una incidencia con prioridad alta. El nodo IF evalua la condicion, toma la rama
+TRUE, y la respuesta del workflow devuelve el estado URGENTE.
+
+### Prueba con prioridad baja
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:5678/webhook/registro-incidencias" -Method POST -Body (@{prioridad="baja"} | ConvertTo-Json) -ContentType "application/json"
+```
+
+Esta prueba envia una incidencia con prioridad baja. El nodo IF evalua la condicion, toma la rama
+FALSE, y la respuesta del workflow devuelve el estado NORMAL.
+
 ## Matriz de incidencias tecnicas
 
 Durante el desarrollo del proyecto se presentaron los siguientes inconvenientes:
