@@ -83,7 +83,7 @@ Se envio una solicitud con el campo de prioridad configurado como "baja". El nod
 ## Como probar el workflow manualmente
 
 Para probar el webhook manualmente se envio una peticion POST a la URL generada por n8n
-(http://localhost:5678/webhook/...) incluyendo un campo "prioridad" con el valor "alta" o "baja"
+(http://localhost:5678/webhook/registro-incidencias) incluyendo un campo "prioridad" con el valor "alta" o "baja"
 en el cuerpo de la solicitud en formato JSON. La respuesta del workflow confirmo la clasificacion
 correcta (URGENTE o NORMAL) segun el valor enviado.
 
