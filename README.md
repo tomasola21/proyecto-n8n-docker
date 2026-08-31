@@ -25,7 +25,7 @@ Verificar que el contenedor este corriendo:
 docker ps
 ```
 
-Acceder a n8n desde el navegador:http://localhost:5678
+Acceder a n8n desde el navegador: http://localhost:5678
 
 ## Estructura del proyecto
 
@@ -53,40 +53,7 @@ URGENTE NORMAL
 
 El webhook recibe los datos de la incidencia, el nodo Edit Fields normaliza la informacion recibida, y el nodo IF evalua la prioridad: si es alta, el flujo toma la rama TRUE y clasifica la incidencia como URGENTE; si es baja, toma la rama FALSE y la clasifica como NORMAL.
 
-`markdown
-## Pruebas del workflow desde PowerShell
 
-Para comprobar el funcionamiento del workflow se realizaron pruebas enviando solicitudes HTTP POST al Webhook de n8n desde PowerShell.
-
-### Prueba con prioridad alta
-
-Primero se inició el modo de prueba del Webhook en n8n. Luego, desde PowerShell, se ejecutó:
-
-powershell
-Invoke-RestMethod -Uri "http://localhost:5678/webhook-test/registro-incidencia" `
-  -Method POST `
-  -ContentType "application/json" `
-  -Body '{"nombre":"Juan Perez","incidencia":"Servidor caído","prioridad":"alta"}'
-`
-
-El workflow recibió los datos, el nodo IF evaluó que la prioridad era "alta" y tomó la rama TRUE, devolviendo el estado URGENTE.
-
-### Prueba con prioridad baja
-
-Para comprobar la segunda ruta del workflow se ejecutó:
-
-powershell
-Invoke-RestMethod -Uri "http://localhost:5678/webhook-test/registro-incidencia" `
-  -Method POST `
-  -ContentType "application/json" `
-  -Body '{"nombre":"Maria Lopez","incidencia":"Problema con impresora","prioridad":"baja"}'
-
-
-En este caso, el nodo IF evaluó que la prioridad no era "alta" y tomó la rama FALSE, devolviendo el estado NORMAL.
-
-Estas dos pruebas permitieron comprobar las dos rutas de decisión implementadas en el workflow.
-
-`
 ## Evidencias
 
 ### Docker ejecutandose correctamente
