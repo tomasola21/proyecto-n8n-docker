@@ -1,0 +1,178 @@
+{
+  "name": "Registro de Incidencias",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c027d527-9d7c-451f-9f07-5bc4df46c8e7",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "67abcc30-5771-40c9-82d1-7d34d0fdd242",
+      "name": "Webhook",
+      "webhookId": "c027d527-9d7c-451f-9f07-5bc4df46c8e7"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "97b3c585-452e-4559-8a01-f8e3b4fff0a9",
+              "name": "nombre",
+              "value": "={{$json.body.nombre}}",
+              "type": "string"
+            },
+            {
+              "id": "ad6ed718-367a-4661-b11f-2f4f71ffd8bb",
+              "name": "incidencia",
+              "value": "={{$json.body.incidencia}}",
+              "type": "string"
+            },
+            {
+              "id": "6d394cba-cfa4-46c4-ac1e-fa0b8c9ea7b5",
+              "name": "prioridad",
+              "value": "={{$json.body.prioridad}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "eb0bb6bb-595c-4ab4-b1ac-654297d08a2a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "7cda10bd-70d2-4657-bbcf-6ade87d7aabb",
+              "leftValue": "{{$json.prioridad}}",
+              "rightValue": "alta",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        448,
+        0
+      ],
+      "id": "39a3563c-8fba-4809-8348-ed7f30aaa5ab",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"estado\":\"URGENTE\",\"mensaje\":\"La incidencia tiene prioridad alta.\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        -96
+      ],
+      "id": "6384da4d-bcfa-4a73-bf5c-56309b51ffc6",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"estado\":\"NORMAL\",\"mensaje\":\"La incidencia ha sido registrada para atención regular.\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        96
+      ],
+      "id": "d5ce4817-9e72-49e2-8ad2-643e02cf95b4",
+      "name": "Respond to Webhook1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "48ec66c5-02ed-4dd4-8625-5522a6fdf686",
+  "meta": {
+    "instanceId": "89a3112f2ceeb58d551e7274fea4b92ad4bf537848e2afcd47f1b7b7dfb15482"
+  },
+  "nodeGroups": [],
+  "id": "rjxorI4XUKILyJPh",
+  "tags": []
+}
