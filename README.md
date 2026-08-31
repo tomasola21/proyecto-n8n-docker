@@ -91,6 +91,21 @@ Durante el desarrollo del proyecto se presentaron los siguientes inconvenientes:
 ![Error Docker](evidencias/01-error-docker.png)
 ![Error n8n Edit Fields](evidencias/29-error-edit-fields.png)
 
+
+## Requisitos previos y verificación de la instalación
+
+Para ejecutar el proyecto correctamente, el equipo debe contar con Docker Desktop instalado y en ejecución, además de Git para obtener el repositorio.
+
+### Verificación de Docker
+
+Antes de levantar n8n, se debe comprobar que Docker Desktop esté ejecutándose mediante:
+
+```powershell
+docker --version
+docker compose version
+docker ps
+
+
 ## Resultado final
 
 El workflow fue probado localmente de forma completa. Ambas rutas de decision del nodo IF funcionaron correctamente: la ruta TRUE clasifico las incidencias de prioridad alta como URGENTE, y la ruta FALSE clasifico las de prioridad baja como NORMAL, confirmando que la logica de clasificacion automatica opera segun lo esperado.
