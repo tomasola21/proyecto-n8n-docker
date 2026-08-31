@@ -100,11 +100,9 @@ Para ejecutar el proyecto correctamente, el equipo debe contar con Docker Deskto
 
 Antes de levantar n8n, se debe comprobar que Docker Desktop esté ejecutándose mediante:
 
-```powershell
 docker --version
 docker compose version
 docker ps
-
 
 ## Resultado final
 
