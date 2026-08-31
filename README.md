@@ -79,6 +79,13 @@ Se envio una solicitud con el campo de prioridad configurado como "baja". El nod
 ![Prueba prioridad baja](evidencias/33-if-false.png)
 ![Resultado normal](evidencias/34-respuesta-normal-funcionando.png)
 
+## Como probar el workflow manualmente
+
+Para probar el webhook manualmente se envio una peticion POST a la URL generada por n8n
+(http://localhost:5678/webhook/...) incluyendo un campo "prioridad" con el valor "alta" o "baja"
+en el cuerpo de la solicitud en formato JSON. La respuesta del workflow confirmo la clasificacion
+correcta (URGENTE o NORMAL) segun el valor enviado.
+
 ## Matriz de incidencias tecnicas
 
 Durante el desarrollo del proyecto se presentaron los siguientes inconvenientes:
@@ -90,19 +97,6 @@ Durante el desarrollo del proyecto se presentaron los siguientes inconvenientes:
 
 ![Error Docker](evidencias/01-error-docker.png)
 ![Error n8n Edit Fields](evidencias/29-error-edit-fields.png)
-
-
-## Requisitos previos y verificación de la instalación
-
-Para ejecutar el proyecto correctamente, el equipo debe contar con Docker Desktop instalado y en ejecución, además de Git para obtener el repositorio.
-
-### Verificación de Docker
-
-Antes de levantar n8n, se debe comprobar que Docker Desktop esté ejecutándose mediante:
-
-docker --version
-docker compose version
-docker ps
 
 ## Resultado final
 
